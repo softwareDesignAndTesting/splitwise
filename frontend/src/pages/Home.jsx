@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-700">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">

@@ -10,7 +10,7 @@ export default function Dashboard() {
     totalGroups: 0,
     totalExpenses: 0,
     totalAmount: 0,
-    pendingSettlements: 0
+    pendingSettlements: 0 
   });
   const [loading, setLoading] = useState(true);
 
