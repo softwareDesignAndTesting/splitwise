@@ -14,6 +14,7 @@ export default function LoadingSpinner({ size = 'md', text = 'Loading...' }) {
   );
 }
 
+
 export function PageLoader({ text = 'Loading page...' }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-900 flex items-center justify-center">
