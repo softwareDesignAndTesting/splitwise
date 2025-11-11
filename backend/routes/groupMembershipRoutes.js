@@ -5,7 +5,8 @@ const {
   removeMemberFromGroup, 
   getGroupMembers, 
   getUserGroups,
-  checkMembership
+  checkMembership,
+  checkConnectionBeforeAdd
 } = require('../controllers/groupMembershipController');
 const auth = require('../middleware/auth');
 
@@ -17,6 +18,7 @@ router.post('/', addMemberToGroup);
 router.delete('/remove', removeMemberFromGroup);
 router.get('/group/:groupId', getGroupMembers);
 router.get('/user/:userId', getUserGroups);
-router.get('/check/:userName/:groupId', checkMembership);
+router.get('/check/:userId/:groupId', checkMembership);
+router.get('/connection/:userId/:groupId', checkConnectionBeforeAdd);
 
 module.exports = router; 
