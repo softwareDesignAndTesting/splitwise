@@ -2,34 +2,57 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-700">
+    <div className="min-h-screen bg-transparent">
+      <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800">
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center text-white">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-8">
               <span className="text-4xl">💸</span>
             </div>
-            <h1 className="text-6xl font-black text-white mb-6">
-              Splitwise
+            <p className="pill-badge bg-white/20 text-xs tracking-[0.2em] mx-auto text-white/80 mb-4">
+              FRIEND GROUPS • TRAVEL • ROOMMATES
+            </p>
+            <h1 className="text-5xl md:text-6xl font-black leading-tight mb-4">
+              Split every rupee with zero awkwardness
             </h1>
-            <p className="text-xl text-emerald-100 mb-8 max-w-2xl mx-auto">
-              The easiest way to split bills with friends and family. 
-              Track expenses, settle debts, and keep everyone happy.
+            <p className="text-lg md:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
+              Beautiful dashboards, lightning-fast inputs, and real-world workflows tuned for your college group, flatmates, or travel squad.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/signup"
-                className="bg-white text-emerald-600 font-bold px-8 py-4 rounded-2xl text-lg hover:bg-gray-100 transition-colors shadow-lg"
+                className="bg-white text-emerald-700 font-bold px-10 py-4 rounded-2xl text-lg hover:-translate-y-0.5 hover:shadow-2xl transition-all"
               >
-                Get Started Free
+                Create free account
               </Link>
               <Link
                 to="/login"
-                className="border-2 border-white text-white font-bold px-8 py-4 rounded-2xl text-lg hover:bg-white hover:text-emerald-600 transition-colors"
+                className="border-2 border-white/70 text-white font-bold px-10 py-4 rounded-2xl text-lg hover:bg-white hover:text-emerald-700 transition-colors"
               >
-                Sign In
+                Already using Splitwise?
               </Link>
+            </div>
+
+            <div className="mt-12 grid gap-4 md:grid-cols-3 text-left">
+              <div className="glass-panel rounded-2xl p-5 text-slate-900">
+                <p className="pill-badge bg-emerald-100 text-emerald-700 mb-3">Live snapshot</p>
+                <p className="text-3xl font-bold text-emerald-600">₹18,540</p>
+                <p className="text-sm text-slate-600">settled inside demo group over last 15 days</p>
+              </div>
+              <div className="glass-panel rounded-2xl p-5">
+                <p className="pill-badge bg-blue-100 text-blue-700 mb-3">Trusted circle</p>
+                <p className="font-semibold text-lg text-slate-700">25 real people • 4 active groups</p>
+                <p className="text-sm text-slate-500 mt-1">Use their logins to show professors how the product feels in production.</p>
+              </div>
+              <div className="glass-panel rounded-2xl p-5">
+                <p className="pill-badge bg-amber-100 text-amber-700 mb-3">Experience</p>
+                <ul className="space-y-1 text-slate-700">
+                  <li>• Responsive cards & glassmorphism shell</li>
+                  <li>• Sub-second navigation</li>
+                  <li>• Color-coded insights per group</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -78,6 +101,35 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Use-case tiles */}
+      <div className="py-16 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: 'Roommates',
+              copy: 'Track rent, Wi-Fi, groceries, and random Swiggy runs without opening a spreadsheet.',
+              icon: '🏠'
+            },
+            {
+              title: 'College projects',
+              copy: 'Centralize printing, Uber, and prototype purchases while keeping every teammate in the loop.',
+              icon: '📚'
+            },
+            {
+              title: 'Trips & clubs',
+              copy: 'From garba nights to hackathons, create a group in seconds and share a simple invite link.',
+              icon: '✈️'
+            }
+          ].map((item) => (
+            <div key={item.title} className="glass-panel rounded-3xl p-8 floating-card">
+              <div className="text-4xl mb-4">{item.icon}</div>
+              <h3 className="text-2xl font-semibold mb-3 text-slate-900">{item.title}</h3>
+              <p className="text-slate-600">{item.copy}</p>
+            </div>
+          ))}
         </div>
       </div>
 

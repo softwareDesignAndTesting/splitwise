@@ -21,11 +21,17 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 function LayoutWithHeaderFooter({ children }) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <ToastContainer />
-      <div className="flex-grow">{children}</div>
-      <Footer />
+    <div className="relative min-h-screen bg-app text-slate-900 overflow-hidden">
+      <div className="absolute inset-0 grid-overlay opacity-70 pointer-events-none" aria-hidden />
+      <div className="absolute -top-32 right-0 w-72 h-72 bg-emerald-300/40 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 -left-20 w-80 h-80 bg-sky-200/40 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-10 w-64 h-64 bg-rose-200/30 blur-[120px] rounded-full pointer-events-none" />
+      <div className="relative flex flex-col min-h-screen">
+        <Header />
+        <ToastContainer position="top-right" />
+        <div className="flex-grow">{children}</div>
+        <Footer />
+      </div>
     </div>
   );
 }

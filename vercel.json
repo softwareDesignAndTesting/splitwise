@@ -1,0 +1,11 @@
+{
+    "functions": {
+      "backend/api/index.js": {
+        "includeFiles": "backend/**"
+      }
+    },
+    "routes": [
+      { "src": "/api/(.*)", "dest": "backend/api/index.js" },
+      { "src": "/backend/(.*)", "dest": "backend/api/index.js" }
+    ]
+  }

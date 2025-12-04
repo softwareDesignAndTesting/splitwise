@@ -1,58 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
-/* Mobile Optimization */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+@layer base {
+  :root {
+    --brand: #047857;
+    --brand-dark: #064e3b;
+    --brand-light: #d1fae5;
+    --bg-base: #f5f7fb;
+    --text: #0f172a;
   }
-  
-  /* Prevent horizontal scroll */
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
+    font-family: "Space Grotesk", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg-base);
+    color: var(--text);
+    min-height: 100vh;
+    position: relative;
     overflow-x: hidden;
   }
-  
-  /* Touch-friendly buttons */
-  button {
-    min-height: 44px;
-    min-width: 44px;
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.18), transparent 45%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15), transparent 40%),
+      radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.12), transparent 55%);
+    filter: blur(0px);
   }
-  
-  /* Better text sizing on mobile */
-  input, textarea {
-    font-size: 16px; /* Prevents zoom on iOS */
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background-image: linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    button {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    input,
+    textarea {
+      font-size: 16px;
+    }
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+@layer utilities {
+  .bg-app {
+    background: linear-gradient(180deg, rgba(246, 249, 255, 0.9), rgba(236, 253, 245, 0.95));
+  }
 
-/* Loading animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(15, 118, 110, 0.08);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(18px);
+  }
 
-.animate-in {
-  animation: fadeIn 0.3s ease-out;
-}
+  .grid-overlay {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 140px 140px;
+  }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
+  .pill-badge {
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 
-::-webkit-scrollbar-track {
-  background: #1f2937;
-}
+  .floating-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #10b981;
-  border-radius: 3px;
-}
+  .floating-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #059669;
+  .animate-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
 }
