@@ -49,7 +49,12 @@ export default function App() {
             <GroupDetail />
           </LayoutWithHeaderFooter>
         } />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={
+          <LayoutWithHeaderFooter>
+            <Dashboard />
+          </LayoutWithHeaderFooter>
+        } />
+        <Route path="/home" element={<Home />} />
         <Route
           path="/dashboard"
           element={
