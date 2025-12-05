@@ -20,7 +20,8 @@ app.use(
       'https://split-wise-ekabx9zk7-kalyani-daves-projects.vercel.app',
       'https://sw-xi.vercel.app',
       'https://sw-git-main-kalyani-daves-projects.vercel.app',
-      'https://sw-2s011rssc-kalyani-daves-projects.vercel.app'
+      'https://sw-2s011rssc-kalyani-daves-projects.vercel.app',
+      'https://splitwise-frontend-teal.vercel.app'
     ],
     credentials: true
   })
