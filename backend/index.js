@@ -17,7 +17,10 @@ app.use(
       'https://splitwise.vercel.app',
       'https://splitwise-app.vercel.app',
       'https://split-wise-sepia.vercel.app',
-      'https://split-wise-ekabx9zk7-kalyani-daves-projects.vercel.app'
+      'https://split-wise-ekabx9zk7-kalyani-daves-projects.vercel.app',
+      'https://sw-xi.vercel.app',
+      'https://sw-git-main-kalyani-daves-projects.vercel.app',
+      'https://sw-2s011rssc-kalyani-daves-projects.vercel.app'
     ],
     credentials: true
   })
