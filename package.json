@@ -2,9 +2,9 @@
   "name": "splitwise",
   "version": "1.0.0",
   "scripts": {
+    "build": "cd frontend && npm install && npm run build",
     "start": "cd backend && npm start",
     "dev": "cd backend && npm run dev",
-    "build": "cd frontend && npm run build",
     "install-backend": "cd backend && npm install",
     "install-frontend": "cd frontend && npm install",
     "test": "jest",
