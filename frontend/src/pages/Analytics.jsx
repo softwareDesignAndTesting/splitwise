@@ -82,7 +82,7 @@ export default function Analytics() {
 
   const processCategoryData = (expenses) => {
     const categoryMap = {};
-    const colors = ['bg-green-500', 'bg-blue-500', 'bg-purple-500', 'bg-orange-500', 'bg-pink-500', 'bg-indigo-500'];
+    const colors = ['bg-emerald-500', 'bg-blue-500', 'bg-purple-500', 'bg-orange-500', 'bg-pink-500', 'bg-indigo-500'];
     expenses.forEach(expense => {
       const category = expense.category || 'Other';
       categoryMap[category] = (categoryMap[category] || 0) + expense.amount;
@@ -98,186 +98,190 @@ export default function Analytics() {
     return <PageLoader text="Loading analytics..." />;
   }
 
+  const statCards = [
+    {
+      title: 'Total spent',
+      value: `₹${analytics.totalSpent.toLocaleString()}`,
+      helper: 'All time across groups',
+      gradient: 'from-emerald-500 to-emerald-600',
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9z" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Active groups',
+      value: analytics.activeGroups,
+      helper: 'Groups you are part of',
+      gradient: 'from-sky-500 to-blue-600',
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+    },
+    {
+      title: 'Monthly average',
+      value: `₹${Math.round(analytics.avgPerMonth).toLocaleString()}`,
+      helper: 'Your spending pattern',
+      gradient: 'from-purple-500 to-indigo-600',
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+    },
+    {
+      title: 'This month',
+      value: `₹${analytics.thisMonth.toLocaleString()}`,
+      helper: new Date().toLocaleDateString('en-US', { month: 'long' }),
+      gradient: 'from-amber-500 to-orange-600',
+      icon: (
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 pb-20">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+    <div className="min-h-screen bg-transparent pb-20">
+      <div className="max-w-6xl mx-auto px-4 lg:px-0 py-12 space-y-10">
+        <div className="glass-panel rounded-3xl p-8 md:p-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+            <div>
+              <p className="pill-badge bg-emerald-100 text-emerald-700 inline-block mb-3">
+                Analytics overview
+              </p>
+              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+                Your spending insights
+              </h1>
+              <p className="text-lg text-slate-600 max-w-2xl">
+                Track patterns, categories, and trends across all your groups and expenses.
+              </p>
             </div>
-            <h1 className="text-4xl font-bold mb-2">Analytics Dashboard</h1>
-            <p className="text-xl text-green-100">Track your spending patterns and insights</p>
+            <div className="text-sm text-slate-500 bg-slate-100 rounded-full px-4 py-2 w-fit">
+              Live data ✅
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Summary Cards */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-green-100 text-sm font-medium">Total Spent</p>
-                <p className="text-3xl font-bold">₹{analytics.totalSpent.toLocaleString()}</p>
-                <p className="text-green-200 text-xs mt-1">All time</p>
-              </div>
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-blue-100 text-sm font-medium">Active Groups</p>
-                <p className="text-3xl font-bold">{analytics.activeGroups}</p>
-                <p className="text-blue-200 text-xs mt-1">Groups joined</p>
-              </div>
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-purple-100 text-sm font-medium">Avg per Month</p>
-                <p className="text-3xl font-bold">₹{Math.round(analytics.avgPerMonth).toLocaleString()}</p>
-                <p className="text-purple-200 text-xs mt-1">Monthly average</p>
-              </div>
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-orange-100 text-sm font-medium">This Month</p>
-                <p className="text-3xl font-bold">₹{analytics.thisMonth.toLocaleString()}</p>
-                <p className="text-orange-200 text-xs mt-1">{new Date().toLocaleDateString('en-US', { month: 'long' })}</p>
-              </div>
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Monthly Expenses Chart */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 border border-green-100 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            <svg className="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-            Monthly Spending Trend
-          </h2>
-          <div className="space-y-4">
-            {analytics.monthlyExpenses.length > 0 ? analytics.monthlyExpenses.map((item, index) => {
-              const maxAmount = Math.max(...analytics.monthlyExpenses.map(i => i.amount));
-              const percentage = maxAmount > 0 ? (item.amount / maxAmount) * 100 : 0;
-              return (
-                <div key={index} className="relative">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-gray-700">{item.month}</span>
-                    <span className="text-lg font-bold text-green-600">₹{item.amount.toLocaleString()}</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div 
-                      className="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full transition-all duration-1000 ease-out"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {statCards.map((card) => (
+              <div
+                key={card.title}
+                className={`rounded-2xl p-5 text-white bg-gradient-to-br ${card.gradient} floating-card`}
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                    {card.icon}
                   </div>
                 </div>
-              );
-            }) : (
-              <div className="text-center py-8 text-gray-500">
-                <p>No monthly data available</p>
+                <p className="text-sm uppercase tracking-wide text-white/70">{card.title}</p>
+                <p className="text-3xl font-bold mt-1">{card.value}</p>
+                <p className="text-sm text-white/70 mt-2">{card.helper}</p>
               </div>
-            )}
+            ))}
           </div>
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Category Breakdown */}
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-green-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <svg className="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+          {/* Monthly Expenses Chart */}
+          <div className="glass-panel rounded-2xl p-6 mb-8">
+            <h2 className="text-lg font-semibold text-slate-900 mb-6 flex items-center">
+              <svg className="w-5 h-5 text-emerald-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
-              Category Breakdown
+              Monthly spending trend
             </h2>
             <div className="space-y-4">
-              {analytics.categoryBreakdown.length > 0 ? analytics.categoryBreakdown.map((item, index) => {
-                const totalAmount = analytics.categoryBreakdown.reduce((sum, cat) => sum + cat.amount, 0);
-                const percentage = totalAmount > 0 ? ((item.amount / totalAmount) * 100).toFixed(1) : 0;
+              {analytics.monthlyExpenses.length > 0 ? analytics.monthlyExpenses.map((item, index) => {
+                const maxAmount = Math.max(...analytics.monthlyExpenses.map(i => i.amount));
+                const percentage = maxAmount > 0 ? (item.amount / maxAmount) * 100 : 0;
                 return (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-                    <div className="flex items-center">
-                      <div className={`w-4 h-4 rounded-full ${item.color} mr-3`}></div>
-                      <div>
-                        <span className="font-medium text-gray-900">{item.category}</span>
-                        <p className="text-sm text-gray-500">{percentage}% of total</p>
-                      </div>
+                  <div key={index} className="relative">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-slate-700">{item.month}</span>
+                      <span className="text-lg font-bold text-emerald-600">₹{item.amount.toLocaleString()}</span>
                     </div>
-                    <span className="font-bold text-gray-900">₹{item.amount.toLocaleString()}</span>
+                    <div className="w-full bg-slate-200 rounded-full h-2">
+                      <div 
+                        className="bg-emerald-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
                   </div>
                 );
               }) : (
-                <div className="text-center py-8 text-gray-500">
-                  <p>No category data available</p>
+                <div className="text-center py-8 text-slate-500">
+                  <p>No monthly data available</p>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Top Expenses */}
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-green-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <svg className="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-              </svg>
-              Top Expenses
-            </h2>
-            <div className="space-y-4">
-              {analytics.topExpenses.length > 0 ? analytics.topExpenses.map((expense, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-green-50 rounded-xl border border-gray-100 hover:shadow-md transition-all">
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-green-600 font-bold text-sm">#{index + 1}</span>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Category Breakdown */}
+            <div className="glass-panel rounded-2xl p-6">
+              <h2 className="text-lg font-semibold text-slate-900 mb-6 flex items-center">
+                <svg className="w-5 h-5 text-emerald-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                </svg>
+                Category breakdown
+              </h2>
+              <div className="space-y-4">
+                {analytics.categoryBreakdown.length > 0 ? analytics.categoryBreakdown.map((item, index) => {
+                  const totalAmount = analytics.categoryBreakdown.reduce((sum, cat) => sum + cat.amount, 0);
+                  const percentage = totalAmount > 0 ? ((item.amount / totalAmount) * 100).toFixed(1) : 0;
+                  return (
+                    <div key={index} className="flex items-center justify-between p-4 bg-white/50 rounded-xl hover:bg-white/80 transition-colors">
+                      <div className="flex items-center">
+                        <div className={`w-3 h-3 rounded-full ${item.color} mr-3`}></div>
+                        <div>
+                          <span className="font-medium text-slate-900">{item.category}</span>
+                          <p className="text-sm text-slate-500">{percentage}% of total</p>
+                        </div>
+                      </div>
+                      <span className="font-semibold text-slate-900">₹{item.amount.toLocaleString()}</span>
                     </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">{expense.description}</div>
-                      <div className="text-sm text-gray-500">{new Date(expense.createdAt).toLocaleDateString()} • {expense.category || 'General'}</div>
-                    </div>
+                  );
+                }) : (
+                  <div className="text-center py-8 text-slate-500">
+                    <p>No category data available</p>
                   </div>
-                  <span className="font-bold text-green-600 text-lg">₹{expense.amount.toLocaleString()}</span>
-                </div>
-              )) : (
-                <div className="text-center py-8 text-gray-500">
-                  <p>No expenses found</p>
-                </div>
-              )}
+                )}
+              </div>
+            </div>
+
+            {/* Top Expenses */}
+            <div className="glass-panel rounded-2xl p-6">
+              <h2 className="text-lg font-semibold text-slate-900 mb-6 flex items-center">
+                <svg className="w-5 h-5 text-emerald-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
+                Top expenses
+              </h2>
+              <div className="space-y-4">
+                {analytics.topExpenses.length > 0 ? analytics.topExpenses.map((expense, index) => (
+                  <div key={index} className="flex items-center justify-between p-4 bg-white/50 rounded-xl hover:bg-white/80 transition-all">
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                        <span className="text-emerald-600 font-semibold text-sm">#{index + 1}</span>
+                      </div>
+                      <div>
+                        <div className="font-medium text-slate-900">{expense.description}</div>
+                        <div className="text-sm text-slate-500">{new Date(expense.createdAt).toLocaleDateString()} • {expense.category || 'General'}</div>
+                      </div>
+                    </div>
+                    <span className="font-semibold text-slate-900">₹{expense.amount.toLocaleString()}</span>
+                  </div>
+                )) : (
+                  <div className="text-center py-8 text-slate-500">
+                    <p>No expenses found</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   );

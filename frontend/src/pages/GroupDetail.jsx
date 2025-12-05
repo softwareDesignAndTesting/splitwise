@@ -75,41 +75,41 @@ export default function GroupDetail() {
 
   if (!group) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center">
-          <svg className="animate-spin h-12 w-12 text-emerald-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      <div className="min-h-screen bg-app flex items-center justify-center text-slate-100">
+        <div className="glass-panel rounded-2xl px-8 py-6 text-center">
+          <svg className="animate-spin h-10 w-10 text-emerald-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-70" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <p className="text-gray-600">Loading group info...</p>
+          <p className="text-slate-300">Loading group info...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20">
-      <div className="max-w-6xl mx-auto px-4 py-8 pb-24">
+    <div className="min-h-screen bg-app pb-20 text-slate-100">
+      <div className="max-w-6xl mx-auto px-4 py-8 pb-24 space-y-6">
         {/* Header Section */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
+        <div className="glass-panel rounded-3xl p-8 glow-border">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="text-center lg:text-left">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">{group.name}</h1>
-              <p className="text-gray-600 text-lg mb-4">{group.description || 'No description'}</p>
+              <h1 className="text-4xl font-bold mb-2 text-white">{group.name}</h1>
+              <p className="text-slate-300 text-lg mb-4">{group.description || 'No description'}</p>
               
               {/* Stats */}
-              <div className="flex gap-8 justify-center lg:justify-start">
+              <div className="flex gap-8 justify-center lg:justify-start text-slate-200">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{members.length}</div>
-                  <div className="text-sm text-gray-500">Members</div>
+                  <div className="text-2xl font-bold text-white">{members.length}</div>
+                  <div className="text-sm text-slate-400">Members</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">{expenses.length}</div>
-                  <div className="text-sm text-gray-500">Expenses</div>
+                  <div className="text-2xl font-bold text-emerald-300">{expenses.length}</div>
+                  <div className="text-sm text-slate-400">Expenses</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">₹{totalAmount.toLocaleString()}</div>
-                  <div className="text-sm text-gray-500">Total</div>
+                  <div className="text-2xl font-bold text-cyan-300">₹{totalAmount.toLocaleString()}</div>
+                  <div className="text-sm text-slate-400">Total</div>
                 </div>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function GroupDetail() {
             <div className="flex flex-wrap gap-3">
               <button 
                 onClick={() => navigate(`/groups/${groupId}/add-member`)} 
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center space-x-2"
+                className="btn-primary flex items-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
@@ -127,7 +127,7 @@ export default function GroupDetail() {
               </button>
               <button 
                 onClick={() => navigate(`/groups/${groupId}/add-expense`)} 
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center space-x-2"
+                className="btn-ghost flex items-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -136,7 +136,7 @@ export default function GroupDetail() {
               </button>
               <button
                 onClick={handleSettleUp}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center space-x-2"
+                className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold py-3 px-5 rounded-2xl shadow-xl hover:translate-y-[-1px] transition-all flex items-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -148,23 +148,23 @@ export default function GroupDetail() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 mb-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('expenses')}
-            className={`px-6 py-3 rounded-xl font-semibold transition-colors ${
+            className={`px-5 py-3 rounded-xl font-semibold transition-all glow-border ${
               activeTab === 'expenses'
-                ? 'bg-emerald-600 text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                ? 'bg-emerald-500/80 text-white shadow-xl'
+                : 'bg-white/10 text-slate-200 hover:bg-white/15'
             }`}
           >
             Expenses ({expenses.length})
           </button>
           <button
             onClick={() => setActiveTab('members')}
-            className={`px-6 py-3 rounded-xl font-semibold transition-colors ${
+            className={`px-5 py-3 rounded-xl font-semibold transition-all glow-border ${
               activeTab === 'members'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                ? 'bg-blue-500/80 text-white shadow-xl'
+                : 'bg-white/10 text-slate-200 hover:bg-white/15'
             }`}
           >
             Members ({members.length})
@@ -175,13 +175,13 @@ export default function GroupDetail() {
         {activeTab === 'expenses' && (
           <div className="space-y-4">
             {expenses.length === 0 ? (
-              <div className="text-center py-16 bg-white rounded-2xl shadow-lg border border-gray-100">
+              <div className="glass-panel rounded-2xl p-10 text-center">
                 <div className="text-6xl mb-4">💸</div>
-                <h3 className="text-2xl font-bold text-gray-400 mb-2">No Expenses Yet</h3>
-                <p className="text-gray-500 mb-6">Start by adding your first expense</p>
+                <h3 className="text-2xl font-bold text-slate-200 mb-2">No Expenses Yet</h3>
+                <p className="text-slate-400 mb-6">Start by adding your first expense</p>
                 <button
                   onClick={() => navigate(`/groups/${groupId}/add-expense`)}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
+                  className="btn-primary"
                 >
                   Add First Expense
                 </button>
@@ -190,20 +190,20 @@ export default function GroupDetail() {
               expenses.map((expense) => (
                 <div
                   key={expense._id}
-                  className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow cursor-pointer"
+                  className="glass-panel rounded-2xl p-6 hover:shadow-2xl transition-all cursor-pointer floating-card"
                   onClick={() => navigate(`/expenses/${expense._id}`)}
                 >
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{expense.description}</h3>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <h3 className="text-xl font-semibold text-white mb-2">{expense.description}</h3>
+                      <div className="flex items-center gap-4 text-sm text-slate-300">
                         <span>📅 {new Date(expense.createdAt).toLocaleDateString()}</span>
                         <span>🏷️ {expense.splitType}</span>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-emerald-600">₹{expense.amount.toLocaleString()}</div>
-                      <div className="text-sm text-gray-500">Total Amount</div>
+                      <div className="text-2xl font-bold text-emerald-200">₹{expense.amount.toLocaleString()}</div>
+                      <div className="text-sm text-slate-400">Total Amount</div>
                     </div>
                   </div>
                 </div>
@@ -217,15 +217,15 @@ export default function GroupDetail() {
             {members.map((member, index) => (
               <div
                 key={member._id || index}
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 text-center"
+                className="glass-panel rounded-2xl p-6 text-center floating-card"
               >
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <span className="text-2xl text-white">👤</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {member.userId?.name || member.name || 'Unknown Member'}
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-slate-300">
                   {member.userId?.email || member.email || 'No email'}
                 </p>
               </div>

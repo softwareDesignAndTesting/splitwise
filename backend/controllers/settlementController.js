@@ -1,71 +1,38 @@
 const { fetchUnsettledTransactions, processGroupSettlements } = require('../utils/algo');
-const ExpenseSheet = require('../model/expenseSheetModel');
+const settlementRepository = require('../repositories/settlementRepository');
+const { asyncHandler, AppError } = require('../middleware/errorHandler');
 
-const getUnsettledTransactions = async (req, res) => {
-  try {
-    // const result = await fetchUnsettledTransactions();
-    const groupId = req.params.groupId; 
-    const result = await fetchUnsettledTransactions(groupId);
-    res.json(result);
-  } catch (error) {
-    console.error('Get unsettled transactions error:', error);
-    res.status(500).json({ message: 'Server error' });
-  }
-};
+const getUnsettledTransactions = asyncHandler(async (req, res) => {
+  const groupId = req.params.groupId; 
+  const result = await fetchUnsettledTransactions(groupId);
+  res.json(result);
+});
 
-const settleGroup = async (req, res) => {
-  try {
-    const groupId = req.params.groupId;
-    const frontendTransactions = req.body.transactions || [];
-    const settlements = await processGroupSettlements(groupId, frontendTransactions);
-    res.json({ settlements });
-  } catch (error) {
-    console.error('Settle group error:', error);
-    res.status(500).json({ message: 'Server error' });
-  }
-};
+const settleGroup = asyncHandler(async (req, res) => {
+  const groupId = req.params.groupId;
+  const frontendTransactions = req.body.transactions || [];
+  const settlements = await processGroupSettlements(groupId, frontendTransactions);
+  res.json({ settlements });
+});
 
-const getUserSettlements = async (req, res) => {
-  try {
-    const { groupId, userId } = req.query;
-    if (!groupId || !userId) {
-      return res.status(400).json({ message: 'groupId and userId are required' });
-    }
-    
-    const settlements = await ExpenseSheet.find({
-      groupId,
-      $or: [
-        { userId }, 
-        { payerId: userId } 
-      ]
-    })
-      .populate('userId', 'name email')
-      .populate('payerId', 'name email')
-      .sort({ createdAt: -1 });
-    res.json(settlements);
-  } catch (error) {
-    console.error('Get user settlements error:', error);
-    res.status(500).json({ message: 'Server error' });
+const getUserSettlements = asyncHandler(async (req, res) => {
+  const { groupId, userId } = req.query;
+  if (!groupId || !userId) {
+    throw new AppError('groupId and userId are required', 400);
   }
-};
+  
+  const settlements = await settlementRepository.findByUserAndGroup(groupId, userId);
+  res.json(settlements);
+});
 
-const settlePayment = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updated = await ExpenseSheet.findByIdAndUpdate(
-      id,
-      { settled: true, updatedAt: new Date() },
-      { new: true }
-    );
-    if (!updated) {
-      return res.status(404).json({ message: 'Settlement not found' });
-    }
-    res.json({ message: 'Settlement marked as settled', settlement: updated });
-  } catch (error) {
-    console.error('Settle payment error:', error);
-    res.status(500).json({ message: 'Server error' });
+const settlePayment = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const updated = await settlementRepository.markAsSettled(id);
+  if (!updated) {
+    throw new AppError('Settlement not found', 404);
   }
-};
+  res.json({ message: 'Settlement marked as settled', settlement: updated });
+});
 
 module.exports = {
   getUnsettledTransactions,

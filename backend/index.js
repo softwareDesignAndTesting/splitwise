@@ -1,6 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const { errorHandler, notFound } = require('./middleware/errorHandler');
+const { expenseSubject } = require('./observers/expenseObserver');
+const { SettlementRecalculationObserver } = require('./observers/expenseObserver');
+const { processGroupSettlements } = require('./utils/algo');
 require('dotenv').config();
 
 const app = express();
@@ -22,6 +26,19 @@ app.use(express.json());
 
 connectDB();
 
+// Setup Observer Pattern - Settlement Recalculation Observer
+const settlementService = {
+  recalculateSettlements: async (groupId) => {
+    try {
+      await processGroupSettlements(groupId, []);
+    } catch (error) {
+      console.error('Error recalculating settlements:', error);
+    }
+  }
+};
+const settlementObserver = new SettlementRecalculationObserver(settlementService);
+expenseSubject.attach(settlementObserver);
+
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/groups', require('./routes/groupRoutes'));
 app.use('/api/group-memberships', require('./routes/groupMembershipRoutes'));
@@ -32,6 +49,10 @@ app.use('/api/analytics', require('./routes/analyticsRoutes'));
 app.get('/', (req, res) => {
   res.send('Testing purpose');
 });
+
+// Error handling middleware (must be after routes)
+app.use(notFound);
+app.use(errorHandler);
 
 // export for Vercel serverless
 module.exports = app;

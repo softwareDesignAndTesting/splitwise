@@ -144,20 +144,20 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-app text-slate-100">
+      <div className="max-w-5xl mx-auto px-4 py-10 space-y-8">
         {/* Header */}
-        <div className="flex items-center mb-8">
+        <div className="flex items-center gap-3">
           <button 
             onClick={() => navigate(`/groups/${groupId}`)}
-            className="flex items-center text-gray-600 hover:text-gray-900 transition-colors mr-4"
+            className="btn-ghost flex items-center gap-2"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             Back
           </button>
-          <h1 className="text-3xl font-bold text-gray-900">Add New Expense</h1>
+          <h1 className="text-3xl font-bold text-white">Add New Expense</h1>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -165,16 +165,16 @@ export default function AddExpense() {
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Expense Details */}
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Expense Details</h2>
+              <div className="glass-panel rounded-2xl p-6 glow-border">
+                <h2 className="text-xl font-semibold text-white mb-4">Expense Details</h2>
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                    <label className="block text-sm font-medium text-slate-200 mb-2">Description</label>
                     <input
                       type="text"
                       placeholder="What was this expense for?"
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       required
@@ -182,14 +182,14 @@ export default function AddExpense() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                    <label className="block text-sm font-medium text-slate-200 mb-2">Amount</label>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+                      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">₹</span>
                       <input
                         type="number"
                         step="0.01"
                         placeholder="0.00"
-                        className="w-full pl-8 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full pl-8 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         required
@@ -200,14 +200,14 @@ export default function AddExpense() {
               </div>
 
               {/* Who Paid */}
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+              <div className="glass-panel rounded-2xl p-6">
                 <button
                   type="button"
                   onClick={() => setShowWhoPaid(!showWhoPaid)}
-                  className="w-full flex items-center justify-between text-left"
+                  className="w-full flex items-center justify-between text-left text-white"
                 >
-                  <h2 className="text-xl font-semibold text-gray-900">Who Paid?</h2>
-                  <svg className={`w-5 h-5 text-gray-400 transition-transform ${showWhoPaid ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <h2 className="text-xl font-semibold">Who Paid?</h2>
+                  <svg className={`w-5 h-5 text-slate-300 transition-transform ${showWhoPaid ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -215,18 +215,18 @@ export default function AddExpense() {
                 {showWhoPaid && (
                   <div className="mt-4 space-y-2">
                     {members.map((m) => (
-                      <label key={m._id} className="flex items-center p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer">
+                      <label key={m._id} className="flex items-center p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors cursor-pointer border border-white/10">
                         <input
                           type="checkbox"
                           checked={payers.includes(m._id)}
                           onChange={() => handlePayerSelect(m._id)}
-                          className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                          className="w-4 h-4 text-emerald-400 border-white/20 rounded focus:ring-emerald-400 bg-transparent"
                         />
                         <div className="ml-3 flex items-center">
-                          <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-semibold text-sm mr-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold text-sm mr-3">
                             {m.name.charAt(0).toUpperCase()}
                           </div>
-                          <span className="font-medium text-gray-900">{m.name}</span>
+                          <span className="font-medium text-slate-100">{m.name}</span>
                         </div>
                       </label>
                     ))}
@@ -235,16 +235,16 @@ export default function AddExpense() {
               </div>
 
               {/* Split Type */}
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+              <div className="glass-panel rounded-2xl p-6">
                 <button
                   type="button"
                   onClick={() => setShowSplitType(!showSplitType)}
-                  className="w-full flex items-center justify-between text-left"
+                  className="w-full flex items-center justify-between text-left text-white"
                 >
-                  <h2 className="text-xl font-semibold text-gray-900">
-                    Split Type: <span className="text-emerald-600 capitalize">{splitType}</span>
+                  <h2 className="text-xl font-semibold">
+                    Split Type: <span className="text-emerald-300 capitalize">{splitType}</span>
                   </h2>
-                  <svg className={`w-5 h-5 text-gray-400 transition-transform ${showSplitType ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-5 h-5 text-slate-300 transition-transform ${showSplitType ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -259,10 +259,10 @@ export default function AddExpense() {
                       <button
                         key={type}
                         type="button"
-                        className={`p-3 rounded-xl border-2 font-medium transition-all ${
+                        className={`p-3 rounded-xl border font-medium transition-all ${
                           splitType === type
-                            ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
-                            : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-300'
+                            ? 'bg-emerald-500/20 border-emerald-400 text-emerald-100'
+                            : 'bg-white/5 border-white/10 text-slate-200 hover:bg-white/10'
                         }`}
                         onClick={() => setSplitType(type)}
                       >
@@ -277,7 +277,7 @@ export default function AddExpense() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 rounded-2xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full btn-primary disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {loading ? (
                   <>
@@ -296,47 +296,47 @@ export default function AddExpense() {
 
           {/* Split Details Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sticky top-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Split Details</h3>
+            <div className="glass-panel rounded-2xl p-6 sticky top-8">
+              <h3 className="text-lg font-semibold text-white mb-4">Split Details</h3>
               
               <div className="space-y-3">
                 {members.map((m) =>
                   splitType === 'equally' ? (
-                    <div key={m._id} className="flex items-center justify-between p-3 rounded-xl bg-gray-50">
+                    <div key={m._id} className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10">
                       <label className="flex items-center cursor-pointer">
                         <input
                           type="checkbox"
                           checked={checkedMembers[m._id]}
                           onChange={() => handleCheckboxToggle(m._id)}
-                          className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                          className="w-4 h-4 text-emerald-400 border-white/20 rounded focus:ring-emerald-400 bg-transparent"
                         />
                         <div className="ml-3 flex items-center">
-                          <div className="w-6 h-6 bg-emerald-600 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-2">
+                          <div className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-2">
                             {m.name.charAt(0).toUpperCase()}
                           </div>
-                          <span className="font-medium text-sm text-gray-900">{m.name}</span>
+                          <span className="font-medium text-sm text-white">{m.name}</span>
                         </div>
                       </label>
-                      <span className="text-emerald-600 font-semibold text-sm">₹{splitValues[m._id] || '0.00'}</span>
+                      <span className="text-emerald-200 font-semibold text-sm">₹{splitValues[m._id] || '0.00'}</span>
                     </div>
                   ) : (
-                    <div key={m._id} className="flex items-center justify-between p-3 rounded-xl bg-gray-50">
+                    <div key={m._id} className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10">
                       <div className="flex items-center">
-                        <div className="w-6 h-6 bg-emerald-600 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-2">
+                        <div className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-2">
                           {m.name.charAt(0).toUpperCase()}
                         </div>
-                        <span className="font-medium text-sm text-gray-900">{m.name}</span>
+                        <span className="font-medium text-sm text-white">{m.name}</span>
                       </div>
                       <div className="flex items-center">
                         <input
                           type="number"
                           step="0.01"
-                          className="w-20 px-2 py-1 text-sm border border-gray-300 rounded focus:border-emerald-500 focus:outline-none"
+                          className="w-20 px-2 py-1 text-sm bg-white/5 border border-white/10 rounded text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                           placeholder={splitType === 'percent' ? '0' : '0.00'}
                           value={splitValues[m._id] || ''}
                           onChange={(e) => handleSplitValueChange(m._id, e.target.value)}
                         />
-                        <span className="text-gray-500 ml-1 text-sm">
+                        <span className="text-slate-300 ml-1 text-sm">
                           {splitType === 'percent' ? '%' : '₹'}
                         </span>
                       </div>
