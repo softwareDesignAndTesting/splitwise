@@ -108,7 +108,7 @@ export default function AddMember() {
         <div className="glass-panel rounded-2xl p-6 glow-border space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold text-white">Search Users</h2>
-            <span className="text-sm text-slate-300">Type name or email to invite</span>
+            <span className="text-sm text-slate-600">Type name or email to invite</span>
           </div>
           <div className="relative">
             <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,7 +138,7 @@ export default function AddMember() {
                     </div>
                     <div>
                       <p className="font-semibold text-white">{user.name}</p>
-                      <p className="text-sm text-slate-300">{user.email}</p>
+                      <p className="text-sm text-slate-600">{user.email}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -179,7 +179,7 @@ export default function AddMember() {
                   </div>
                   <div>
                     <p className="font-semibold text-white">{m.userId.name}</p>
-                    <p className="text-sm text-slate-300">{m.userId.email}</p>
+                    <p className="text-sm text-slate-600">{m.userId.email}</p>
                   </div>
                 </div>
                 <span className="text-xs bg-white/10 text-blue-100 px-2 py-1 rounded-full font-medium border border-blue-300/30">

@@ -170,7 +170,7 @@ export default function AddExpense() {
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-200 mb-2">Description</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Description</label>
                     <input
                       type="text"
                       placeholder="What was this expense for?"
@@ -182,7 +182,7 @@ export default function AddExpense() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-slate-200 mb-2">Amount</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Amount</label>
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">₹</span>
                       <input
@@ -207,7 +207,7 @@ export default function AddExpense() {
                   className="w-full flex items-center justify-between text-left text-white"
                 >
                   <h2 className="text-xl font-semibold">Who Paid?</h2>
-                  <svg className={`w-5 h-5 text-slate-300 transition-transform ${showWhoPaid ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-5 h-5 text-slate-200 transition-transform ${showWhoPaid ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -226,7 +226,7 @@ export default function AddExpense() {
                           <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold text-sm mr-3">
                             {m.name.charAt(0).toUpperCase()}
                           </div>
-                          <span className="font-medium text-slate-100">{m.name}</span>
+                          <span className="font-medium text-slate-700">{m.name}</span>
                         </div>
                       </label>
                     ))}
@@ -244,7 +244,7 @@ export default function AddExpense() {
                   <h2 className="text-xl font-semibold">
                     Split Type: <span className="text-emerald-300 capitalize">{splitType}</span>
                   </h2>
-                  <svg className={`w-5 h-5 text-slate-300 transition-transform ${showSplitType ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-5 h-5 text-slate-200 transition-transform ${showSplitType ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -262,7 +262,7 @@ export default function AddExpense() {
                         className={`p-3 rounded-xl border font-medium transition-all ${
                           splitType === type
                             ? 'bg-emerald-500/20 border-emerald-400 text-emerald-100'
-                            : 'bg-white/5 border-white/10 text-slate-200 hover:bg-white/10'
+                            : 'bg-white/5 border-white/10 text-slate-100 hover:bg-white/10'
                         }`}
                         onClick={() => setSplitType(type)}
                       >
@@ -314,7 +314,7 @@ export default function AddExpense() {
                           <div className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-2">
                             {m.name.charAt(0).toUpperCase()}
                           </div>
-                          <span className="font-medium text-sm text-white">{m.name}</span>
+                          <span className="font-medium text-sm text-slate-700">{m.name}</span>
                         </div>
                       </label>
                       <span className="text-emerald-200 font-semibold text-sm">₹{splitValues[m._id] || '0.00'}</span>
@@ -325,7 +325,7 @@ export default function AddExpense() {
                         <div className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold text-xs mr-2">
                           {m.name.charAt(0).toUpperCase()}
                         </div>
-                        <span className="font-medium text-sm text-white">{m.name}</span>
+                        <span className="font-medium text-sm text-slate-700">{m.name}</span>
                       </div>
                       <div className="flex items-center">
                         <input
@@ -336,7 +336,7 @@ export default function AddExpense() {
                           value={splitValues[m._id] || ''}
                           onChange={(e) => handleSplitValueChange(m._id, e.target.value)}
                         />
-                        <span className="text-slate-300 ml-1 text-sm">
+                        <span className="text-slate-200 ml-1 text-sm">
                           {splitType === 'percent' ? '%' : '₹'}
                         </span>
                       </div>

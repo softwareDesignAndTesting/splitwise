@@ -49,7 +49,7 @@ export default function Login() {
               <span className="text-2xl">💸</span>
             </div>
             <h1 className="text-2xl font-bold text-slate-900 mb-2">Welcome back</h1>
-            <p className="text-slate-600">Sign in to your account</p>
+            <p className="text-slate-200">Sign in to your account</p>
           </div>
           
           <form onSubmit={handleLogin} className="space-y-6">
@@ -64,7 +64,7 @@ export default function Login() {
                     errors.email ? 'border-red-300 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'
                   }`}
                 />
-                <FaEnvelope className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                <FaEnvelope className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-300" />
               </div>
               {errors.email && <p className="text-red-500 text-sm mt-2 ml-2">{errors.email}</p>}
             </div>
@@ -83,7 +83,7 @@ export default function Login() {
                 <button 
                   type="button" 
                   onClick={() => setShowPassword(!showPassword)} 
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-slate-100"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
@@ -108,7 +108,7 @@ export default function Login() {
           </form>
 
           <div className="mt-8 text-center">
-            <p className="text-slate-600">
+            <p className="text-slate-200">
               New to Splitwise?{' '}
               <Link 
                 to="/signup" 
@@ -125,7 +125,7 @@ export default function Login() {
             <p className="pill-badge bg-emerald-100 text-emerald-700 inline-block mb-3">
               Trusted by thousands
             </p>
-            <p className="text-slate-600 text-sm">
+            <p className="text-slate-200 text-sm">
               Split expenses effortlessly with friends and family. Track, settle, and stay organized.
             </p>
           </div>

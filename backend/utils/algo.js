@@ -161,55 +161,10 @@ function calculateBalancesFromExpenses(expenses) {
   return Array.from(balances.entries());
 }
 
-// Simple degree of connection calculation for testing
-function findDegreeOfConnection(userId, targetId, groups = []) {
-  // Same person
-  if (userId === targetId) {
-    return 0;
-  }
-  
-  // Build adjacency list from groups
-  const connections = new Map();
-  for (const group of groups) {
-    const members = group.members || [];
-    for (let i = 0; i < members.length; i++) {
-      for (let j = i + 1; j < members.length; j++) {
-        const user1 = members[i];
-        const user2 = members[j];
-        
-        if (!connections.has(user1)) connections.set(user1, new Set());
-        if (!connections.has(user2)) connections.set(user2, new Set());
-        
-        connections.get(user1).add(user2);
-        connections.get(user2).add(user1);
-      }
-    }
-  }
-  
-  // BFS to find shortest path
-  const visited = new Set();
-  const queue = [{ user: userId, degree: 0 }];
-  visited.add(userId);
-  
-  while (queue.length > 0) {
-    const { user, degree } = queue.shift();
-    
-    if (degree >= 3) continue; // Limit to 3 degrees
-    
-    const neighbors = connections.get(user) || new Set();
-    for (const neighbor of neighbors) {
-      if (neighbor === targetId) {
-        return degree + 1;
-      }
-      
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push({ user: neighbor, degree: degree + 1 });
-      }
-    }
-  }
-  
-  return -1; // No connection found
+// Database-aware degree of connection calculation
+async function findDegreeOfConnection(userId, targetId) {
+  const findDegreeOfConnectionImpl = require('../controllers/userDegree');
+  return await findDegreeOfConnectionImpl(userId, targetId);
 }
 
 module.exports = {

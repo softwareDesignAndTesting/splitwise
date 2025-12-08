@@ -14,6 +14,7 @@ app.use(
       'http://localhost:5173',
       'http://localhost:5174',
       'http://localhost:3000',
+      'http://localhost:8080',
       'https://splitwise.vercel.app',
       'https://splitwise-app.vercel.app',
       'https://split-wise-sepia.vercel.app',

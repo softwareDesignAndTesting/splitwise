@@ -79,7 +79,8 @@ const getMe = asyncHandler(async (req, res) => {
 const getDegreeOfConnection = asyncHandler(async (req, res) => {
   const { myUserId, targetId } = req.params;
   
-  const degree = await findDegreeOfConnection(myUserId, targetId);
+  const findDegreeOfConnectionImpl = require('../controllers/userDegree');
+  const degree = await findDegreeOfConnectionImpl(myUserId, targetId);
   
   res.json({ degree });
 });

@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import LandingPage from './components/LandingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
@@ -41,15 +42,28 @@ export default function App() {
     <ErrorBoundary>
       <Router>
         <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={
+          <LayoutWithHeaderFooter>
+            <LandingPage />
+          </LayoutWithHeaderFooter>
+        } />
+        <Route path="/login" element={
+          <LayoutWithHeaderFooter>
+            <Login />
+          </LayoutWithHeaderFooter>
+        } />
+        <Route path="/signup" element={
+          <LayoutWithHeaderFooter>
+            <Signup />
+          </LayoutWithHeaderFooter>
+        } />
+        <Route path="/home" element={<Home />} />
         <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/groups/:groupId" element={
           <LayoutWithHeaderFooter>
             <GroupDetail />
           </LayoutWithHeaderFooter>
         } />
-        <Route path="/" element={<Home />} />
         <Route
           path="/dashboard"
           element={

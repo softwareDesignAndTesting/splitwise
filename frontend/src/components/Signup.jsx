@@ -66,7 +66,7 @@ export default function Signup() {
                     errors.username ? 'border-red-300 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'
                   }`}
                 />
-                <FaUser className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                <FaUser className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-300" />
               </div>
               {errors.username && <p className="text-red-500 text-sm mt-2 ml-2">{errors.username}</p>}
             </div>
@@ -82,7 +82,7 @@ export default function Signup() {
                     errors.email ? 'border-red-300 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'
                   }`}
                 />
-                <FaEnvelope className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                <FaEnvelope className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-300" />
               </div>
               {errors.email && <p className="text-red-500 text-sm mt-2 ml-2">{errors.email}</p>}
             </div>
@@ -101,7 +101,7 @@ export default function Signup() {
                 <button 
                   type="button" 
                   onClick={() => setShowPassword(!showPassword)} 
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-300 hover:text-slate-100"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>

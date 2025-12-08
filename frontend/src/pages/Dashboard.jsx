@@ -143,11 +143,11 @@ export default function Dashboard() {
               <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
                 Welcome back — everything is synced
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl">
+              <p className="text-lg text-slate-200 max-w-2xl">
                 Keep an eye on how much each crew owes, jump into analytics, or spin up a totally new group.
               </p>
             </div>
-            <div className="text-sm text-slate-500 bg-slate-100 rounded-full px-4 py-2 w-fit">
+            <div className="text-sm text-slate-700 bg-slate-100 rounded-full px-4 py-2 w-fit">
               Updated just now ✅
             </div>
           </div>
@@ -207,7 +207,7 @@ export default function Dashboard() {
             <div>
               <p className="pill-badge bg-emerald-100 text-emerald-700 inline-block mb-2">Groups</p>
               <h2 className="text-2xl font-bold text-slate-900">Your active circles</h2>
-              <p className="text-slate-500 text-sm">
+              <p className="text-slate-200 text-sm">
                 Hover each card to see member counts, totals, and last touch points.
               </p>
             </div>

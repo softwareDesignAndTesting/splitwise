@@ -157,11 +157,11 @@ export default function Analytics() {
               <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
                 Your spending insights
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl">
+              <p className="text-lg text-slate-100 max-w-2xl">
                 Track patterns, categories, and trends across all your groups and expenses.
               </p>
             </div>
-            <div className="text-sm text-slate-500 bg-slate-100 rounded-full px-4 py-2 w-fit">
+            <div className="text-sm text-slate-800 bg-slate-100 rounded-full px-4 py-2 w-fit">
               Live data ✅
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function Analytics() {
                 return (
                   <div key={index} className="relative">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium text-slate-700">{item.month}</span>
+                      <span className="font-medium text-white">{item.month}</span>
                       <span className="text-lg font-bold text-emerald-600">₹{item.amount.toLocaleString()}</span>
                     </div>
                     <div className="w-full bg-slate-200 rounded-full h-2">
@@ -237,7 +237,7 @@ export default function Analytics() {
                         <div className={`w-3 h-3 rounded-full ${item.color} mr-3`}></div>
                         <div>
                           <span className="font-medium text-slate-900">{item.category}</span>
-                          <p className="text-sm text-slate-500">{percentage}% of total</p>
+                          <p className="text-sm text-slate-200">{percentage}% of total</p>
                         </div>
                       </div>
                       <span className="font-semibold text-slate-900">₹{item.amount.toLocaleString()}</span>
@@ -268,7 +268,7 @@ export default function Analytics() {
                       </div>
                       <div>
                         <div className="font-medium text-slate-900">{expense.description}</div>
-                        <div className="text-sm text-slate-500">{new Date(expense.createdAt).toLocaleDateString()} • {expense.category || 'General'}</div>
+                        <div className="text-sm text-slate-200">{new Date(expense.createdAt).toLocaleDateString()} • {expense.category || 'General'}</div>
                       </div>
                     </div>
                     <span className="font-semibold text-slate-900">₹{expense.amount.toLocaleString()}</span>
