@@ -22,7 +22,8 @@ app.use(
       'https://sw-xi.vercel.app',
       'https://sw-git-main-kalyani-daves-projects.vercel.app',
       'https://sw-2s011rssc-kalyani-daves-projects.vercel.app',
-      'https://splitwise-frontend-teal.vercel.app'
+      'https://splitwise-frontend-teal.vercel.app',
+      'https://splitwise-frontend-git-main-kalyani-daves-projects.vercel.app'
     ],
     credentials: true
   })
