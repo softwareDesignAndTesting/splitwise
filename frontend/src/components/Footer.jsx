@@ -9,7 +9,7 @@ export default function Footer() {
             </svg>
           </div>
           <span className="text-sm font-medium">
-            &copy; {new Date().getFullYear()} Splitwise — Crafted with <span className="text-rose-300">❤️</span> by Kalyani Dave
+            &copy; {new Date().getFullYear()} Splitwise — Crafted with <span className="text-rose-300">❤️</span> by team splitwise
           </span>
         </div>
       </div>

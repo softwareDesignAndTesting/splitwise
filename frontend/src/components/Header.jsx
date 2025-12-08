@@ -1,12 +1,36 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+
+    // Listen for auth state changes
+    const handleAuthChange = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+    };
+
+    window.addEventListener('authStateChanged', handleAuthChange);
+    return () => window.removeEventListener('authStateChanged', handleAuthChange);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    setShowUserMenu(false);
+    // Trigger auth state update
+    window.dispatchEvent(new Event('authStateChanged'));
+    navigate('/login');
+  };
+
+  const handleLogin = () => {
+    setShowUserMenu(false);
     navigate('/login');
   };
 
@@ -75,15 +99,39 @@ export default function Header() {
 
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-52 bg-slate-900/95 border border-white/10 rounded-xl shadow-2xl py-2 backdrop-blur-xl">
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-3 px-4 py-2 text-slate-200 hover:bg-white/10 hover:text-white transition-colors w-full text-left text-sm"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-                Sign Out
-              </button>
+              {isLoggedIn ? (
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 px-4 py-2 text-slate-200 hover:bg-white/10 hover:text-white transition-colors w-full text-left text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  Sign Out
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={handleLogin}
+                    className="flex items-center gap-3 px-4 py-2 text-slate-200 hover:bg-white/10 hover:text-white transition-colors w-full text-left text-sm"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Sign In
+                  </button>
+                  <Link
+                    to="/signup"
+                    onClick={() => setShowUserMenu(false)}
+                    className="flex items-center gap-3 px-4 py-2 text-slate-200 hover:bg-white/10 hover:text-white transition-colors w-full text-left text-sm"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
           )}
         </div>

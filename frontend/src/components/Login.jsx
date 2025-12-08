@@ -31,6 +31,8 @@ export default function Login() {
     try {
       const res = await axios.post('/users/login', { email, password });
       localStorage.setItem('token', res.data.token);
+      // Trigger auth state update
+      window.dispatchEvent(new Event('authStateChanged'));
       toast.success('Login successful');
       navigate('/dashboard');
     } catch (err) {
