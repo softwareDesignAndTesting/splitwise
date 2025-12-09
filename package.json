@@ -1,9 +1,17 @@
 {
-  "name": "splitwise-backend",
+  "name": "splitwise-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd backend && npm install",
-    "start": "cd backend && npm start"
+    "build": "cd backend && npm install && cd ../frontend && npm install",
+    "start": "cd backend && npm start",
+    "test": "cd tests && npm test",
+    "test:backend": "cd tests && npm test -- --testPathPattern=backend",
+    "test:frontend": "cd tests && npm test -- --testPathPattern=frontend",
+    "test:all": "cd tests && npm test",
+    "test:coverage": "cd tests && npm run test:coverage"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "name": "splitwise-tests",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "test:backend": "jest --testPathPattern=backend",
+    "test:frontend": "jest --testPathPattern=frontend",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/jest-dom": "^5.16.0",
+    "supertest": "^6.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ]
+  }
+}
