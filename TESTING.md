@@ -132,34 +132,33 @@
 
 ## Test Execution Commands
 
-### Backend Tests
+### All Tests (Recommended)
 ```bash
-# Run all backend tests
-npm test --prefix backend
+# Run all tests from root directory
+npm test
 
-# Run unit tests only
-npm run test:unit --prefix backend
+# Run backend tests only
+npm run test:backend
 
-# Run integration tests
-npm run test:integration --prefix backend
+# Run frontend tests only  
+npm run test:frontend
 
 # Run with coverage
-npm run test:coverage --prefix backend
+npm run test:coverage
 ```
 
-### Frontend Tests
+### Individual Directory Tests
 ```bash
-# Run all frontend tests
-npm test --prefix frontend
+# Backend tests (from root)
+npm run backend:test
 
-# Run unit tests
-npm run test:unit --prefix frontend
+# Frontend tests (from root)
+npm run frontend:test
 
-# Run E2E tests
-npm run test:e2e --prefix frontend
-
-# Run tests in watch mode
-npm run test:watch --prefix frontend
+# Or navigate to specific directories
+cd backend && npm test
+cd frontend && npm test
+cd tests && npm test
 ```
 
 ## Test Data & Fixtures

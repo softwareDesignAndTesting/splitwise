@@ -8,7 +8,9 @@
     "test:backend": "cd tests && npm test -- --testPathPattern=backend",
     "test:frontend": "cd tests && npm test -- --testPathPattern=frontend",
     "test:all": "cd tests && npm test",
-    "test:coverage": "cd tests && npm run test:coverage"
+    "test:coverage": "cd tests && npm run test:coverage",
+    "backend:test": "cd backend && npm test",
+    "frontend:test": "cd frontend && npm test"
   },
   "dependencies": {},
   "devDependencies": {
